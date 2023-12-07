@@ -1,14 +1,15 @@
 from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+
 
 app = Flask(__name__)
 
-if __name__ == "__main__":
-    app.run(debug=True)
-
-from flask_sqlalchemy import SQLAlchemy
-
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tasks.db'
 db = SQLAlchemy(app)
+from flask_migrate import Migrate
+migrate = Migrate(app, db)
+if __name__ == "__main__":
+    app.run(debug=True)
 
 class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -19,3 +20,4 @@ class Task(db.Model):
 
     def __repr__(self):
         return f"<Task {self.id}>"
+    
