@@ -1,15 +1,12 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask import request, jsonify
-
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tasks.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///instance/tasks.db'
 db = SQLAlchemy(app)
 from flask_migrate import Migrate
 migrate = Migrate(app, db)
-if __name__ == "__main__":
-    app.run(debug=True)
 
 class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -33,3 +30,6 @@ def create_task():
     db.session.add(new_task)
     db.session.commit()
     return jsonify({'message': 'Task created successfully'})
+
+if __name__ == "__main__":
+    app.run(debug=True)
