@@ -4,9 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Manager</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #007bff;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        h1 {
+            font-weight: bold;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
 </head>
 <body>
-    <h1>Task Manager</h1>
-    <p>Check out the tasks <a href="{{ url_for('get_tasks') }}">here</a>.</p>
+    <header>
+        <h1>Task Manager</h1>
+    </header>
+    
+    <div>
+        <p>Check out the tasks <a href="{{ url_for('get_tasks') }}">here</a>.</p>
+    </div>
 </body>
 </html>
