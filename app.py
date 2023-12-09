@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-
+from flask import request, jsonify
 
 app = Flask(__name__)
 
@@ -21,3 +21,15 @@ class Task(db.Model):
     def __repr__(self):
         return f"<Task {self.id}>"
     
+@app.route('/tasks', methods=['GET'])
+def get_tasks():
+    tasks = Task.query.all()
+    return jsonify([task.__dict__ for task in tasks])
+
+@app.route('/tasks', methods=['POST'])
+def create_task():
+    data = request.get_json()
+    new_task = Task(title=data['title'], description=data.get('description'), deadline=data.get('deadline'))
+    db.session.add(new_task)
+    db.session.commit()
+    return jsonify({'message': 'Task created successfully'})
