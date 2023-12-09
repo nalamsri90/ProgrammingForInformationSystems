@@ -1,11 +1,11 @@
-from flask import Flask
+from flask import Flask, render_template, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
-from flask import request, jsonify
+from flask_migrate import Migrate
+
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///instance/tasks.db'
 db = SQLAlchemy(app)
-from flask_migrate import Migrate
 migrate = Migrate(app, db)
 
 class Task(db.Model):
@@ -17,11 +17,15 @@ class Task(db.Model):
 
     def __repr__(self):
         return f"<Task {self.id}>"
-    
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
 @app.route('/tasks', methods=['GET'])
 def get_tasks():
     tasks = Task.query.all()
-    return jsonify([task.__dict__ for task in tasks])
+    return render_template('tasks.html', tasks=tasks)
 
 @app.route('/tasks', methods=['POST'])
 def create_task():
