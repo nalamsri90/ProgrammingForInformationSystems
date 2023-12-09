@@ -9,7 +9,14 @@
     <h1>Tasks</h1>
     <ul>
         {% for task in tasks %}
-            <li>{{ task.description }}</li>
+            <li>
+                <strong>{{ task.title }}</strong>
+                {% if task.description %}
+                    <p>{{ task.description }}</p>
+                {% else %}
+                    <p>No description available</p>
+                {% endif %}
+            </li>
         {% endfor %}
     </ul>
 </body>
