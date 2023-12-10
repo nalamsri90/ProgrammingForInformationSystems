@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
@@ -29,7 +29,7 @@ def get_tasks():
     return render_template('tasks.html', tasks=tasks)
 
 @app.route('/tasks', methods=['POST'])
-def create_task():
+def create_task_api():
     data = request.get_json()
     new_task = Task(title=data['title'], description=data.get('description'), deadline=data.get('deadline'))
     db.session.add(new_task)
@@ -63,7 +63,6 @@ def delete_task(task_id):
     db.session.delete(task)
     db.session.commit()
     return redirect(url_for('get_tasks'))
-
 
 if __name__ == "__main__":
     app.run(debug=True)
