@@ -1,0 +1,24 @@
+{% extends 'header.html' %}
+{% block title %}Edit Task{% endblock %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h1>Edit Task</h1>
+        <form method="post" action="{{ url_for('edit_task', task_id=task.id) }}">
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <input type="text" class="form-control" id="title" name="title" value="{{ task.title }}" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea class="form-control" id="description" name="description" rows="4">{{ task.description }}</textarea>
+            </div>
+            <div class="form-group">
+                <label for="deadline">Deadline:</label>
+                <input type="date" class="form-control" id="deadline" name="deadline" value="{{ task.deadline }}">
+            </div>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+        </form>
+        <a href="{{ url_for('get_tasks') }}" class="btn btn-secondary mt-3">Cancel</a>
+    </div>
+{% endblock %}
