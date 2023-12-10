@@ -57,7 +57,12 @@ def edit_task(task_id):
         return redirect(url_for('get_tasks'))
     return render_template('edit_task.html', task=task)
 
-
+@app.route('/delete-task/<int:task_id>')
+def delete_task(task_id):
+    task = Task.query.get(task_id)
+    db.session.delete(task)
+    db.session.commit()
+    return redirect(url_for('get_tasks'))
 
 
 if __name__ == "__main__":
