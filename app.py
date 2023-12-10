@@ -26,7 +26,12 @@ def index():
 
 @app.route('/tasks', methods=['GET'])
 def get_tasks():
-    tasks = Task.query.all()
+    search_query = request.args.get('search', '')
+    if search_query:
+        tasks = Task.query.filter(Task.title.contains(search_query) | Task.description.contains(search_query)).all()
+    else:
+        tasks = Task.query.all()
+
     return render_template('tasks.html', tasks=tasks)
 
 @app.route('/tasks', methods=['POST'])
