@@ -4,6 +4,12 @@
 {% block content %}
 <div class="container mt-4">
     <h1>Tasks</h1>
+    <form method="get" action="{{ url_for('get_tasks') }}" class="form-inline mb-3">
+        <div class="form-group mr-2">
+            <input type="text" class="form-control" name="search" placeholder="Search tasks">
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
     <ul>
         {% for task in tasks %}
             <li>{{ task.title }}</li>
