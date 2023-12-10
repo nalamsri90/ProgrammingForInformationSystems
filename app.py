@@ -36,5 +36,18 @@ def create_task():
     db.session.commit()
     return jsonify({'message': 'Task created successfully'})
 
+@app.route('/create-task', methods=['GET', 'POST'])
+def create_task():
+    if request.method == 'POST':
+        data = request.form
+        new_task = Task(title=data['title'], description=data.get('description'), deadline=data.get('deadline'))
+        db.session.add(new_task)
+        db.session.commit()
+        return redirect(url_for('get_tasks'))
+    return render_template('create_task.html')
+
+
+
+
 if __name__ == "__main__":
     app.run(debug=True)
