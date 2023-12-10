@@ -46,6 +46,17 @@ def create_task():
         return redirect(url_for('get_tasks'))
     return render_template('create_task.html')
 
+@app.route('/edit-task/<int:task_id>', methods=['GET', 'POST'])
+def edit_task(task_id):
+    task = Task.query.get(task_id)
+    if request.method == 'POST':
+        task.title = request.form['title']
+        task.description = request.form['description']
+        task.deadline = request.form['deadline']
+        db.session.commit()
+        return redirect(url_for('get_tasks'))
+    return render_template('edit_task.html', task=task)
+
 
 
 
