@@ -15,7 +15,7 @@
             </div>
             <div class="form-group">
                 <label for="deadline">Deadline:</label>
-                <input type="date" class="form-control" id="deadline" name="deadline" value="{{ task.deadline }}">
+                <input type="date" class="form-control" id="deadline" name="deadline" value="{{ task.deadline.strftime('%Y-%m-%d') if task.deadline else '' }}">
             </div>
             <button type="submit" class="btn btn-primary">Save Changes</button>
         </form>
