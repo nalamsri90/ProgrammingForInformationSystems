@@ -63,7 +63,10 @@ def edit_task(task_id):
     if request.method == 'POST':
         task.title = request.form['title']
         task.description = request.form['description']
-        task.deadline = request.form['deadline']
+
+        deadline_str = request.form['deadline']
+        task.deadline = datetime.strptime(deadline_str, '%Y-%m-%d') if deadline_str else None
+
         db.session.commit()
         return redirect(url_for('get_tasks'))
     return render_template('edit_task.html', task=task)
