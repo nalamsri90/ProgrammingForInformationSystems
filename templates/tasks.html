@@ -1,9 +1,9 @@
 {% extends 'header.html' %}
-{% block title %}Task List{% endblock %}
+{% block title %}Tasks List{% endblock %}
 
 {% block content %}
 <div class="container mt-4">
-    <h1>Tasks</h1>
+    <h2>View All Tasks</h2>
     <form method="get" action="{{ url_for('get_tasks') }}" class="form-inline mb-3">
         <div class="form-group mr-2">
             <input type="text" class="form-control" name="search" placeholder="Search tasks">

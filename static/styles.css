@@ -35,12 +35,10 @@ a:hover {
     text-decoration: underline;
 }
 
-.container {
-    margin: auto;
-}
 
 h1 {
     text-align: left;
+    font-size: 1.5rem!important;;
 }
 
 form {
