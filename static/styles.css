@@ -36,12 +36,11 @@ a:hover {
 }
 
 .container {
-    max-width: 600px;
     margin: auto;
 }
 
 h1 {
-    text-align: center;
+    text-align: left;
 }
 
 form {
@@ -74,3 +73,7 @@ button {
     margin-top: 20px;
 }
 
+.row{
+    margin-left: -305px!important;
+    margin-right: 305px!important;
+}
