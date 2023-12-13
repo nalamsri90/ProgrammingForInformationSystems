@@ -2,39 +2,36 @@
 {% block title %}Task List{% endblock %}
 
 {% block content %}
-    <h1>Tasks</h1>
-    <ul id="taskList">
-        {% for task in tasks %}
-            <li>{{ task.description }}</li>
-        {% endfor %}
-    </ul>
 
 
-<div id="taskStatus"> </div>
-   <!-- <div>
-        <p>Check out the tasks <a href="{{ url_for('get_tasks') }}">here</a>.</p>
-    </div> -->
+    <div id="taskCarousel" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            
+                <div class="carousel-item active">
+                    <img src="https://codinginfinite.com/wp-content/uploads/2018/10/task-scheduler.png" class="d-block w-100" >
+                    
+                </div>
+            
+        </div>
+        <a class="carousel-control-prev" href="#taskCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#taskCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script>
-        function fetchTasks() {
-            $.ajax({
-                url: "{{ url_for('get_tasks') }}",
-                method: "GET",
-                success: function (data) {
-                    $('#taskList').empty();
-                    $.each(data.tasks, function (index, task) {
-                        $('#taskList').append('<li>' + task.description + '</li>');
-                    });
-                },
-                error: function (error) {
-                    console.log("Error fetching tasks:", error);
-                }
-            });
-        }
+    <div id="taskStatus"></div>
 
-        setInterval(fetchTasks, 5000);
-    </script>
-    {% endblock %}
+{% endblock %}
+
+<script>
+    $(document).ready(function () {
+        $('#taskCarousel').carousel();
+    });
+</script>
+
 </body>
 </html>
