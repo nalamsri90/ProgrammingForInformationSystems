@@ -5,9 +5,9 @@
     <div class="container mt-4">
         <h1>Create New Task</h1>
 
-        <button id="showFormBtn" class="btn btn-success">Create New Task</button>
+        
 
-        <form id="taskForm" method="post" action="{{ url_for('create_task') }}" style="display: none;">
+        <form id="taskForm" method="post" action="{{ url_for('create_task') }}" >
             <div class="form-group">
                 <label for="title">Title:</label>
                 <input type="text" class="form-control" id="title" name="title" required>
@@ -24,10 +24,5 @@
         </form>
     </div>
 
-    <script>
-        document.getElementById('showFormBtn').addEventListener('click', function() {
-            document.getElementById('taskForm').style.display = 'block';
-            document.getElementById('showFormBtn').style.display = 'none';
-        });
-    </script>
+   
 {% endblock %}

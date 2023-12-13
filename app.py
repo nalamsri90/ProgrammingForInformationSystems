@@ -46,7 +46,11 @@ def create_task_api():
 def create_task():
     if request.method == 'POST':
         data = request.form
-        new_task = Task(title=data['title'], description=data.get('description'), deadline=data.get('deadline'))
+        title = data['title']
+        description = data.get('description')
+        deadline_str = data.get('deadline')
+        deadline = datetime.strptime(deadline_str, '%Y-%m-%d').date() if deadline_str else None
+        new_task = Task(title=title, description=description, deadline=deadline)
         db.session.add(new_task)
         db.session.commit()
         return redirect(url_for('get_tasks'))
