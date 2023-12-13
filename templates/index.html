@@ -1,17 +1,12 @@
 {% extends 'header.html' %}
 {% block title %}Task List{% endblock %}
-
 {% block content %}
-
-
     <div id="taskCarousel" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-            
+        <div class="carousel-inner">            
                 <div class="carousel-item active">
-                    <img src="https://codinginfinite.com/wp-content/uploads/2018/10/task-scheduler.png" class="d-block w-100" >
-                    
-                </div>
-            
+                    <img src="https://codinginfinite.com/wp-content/uploads/2018/10/task-scheduler.png" class="d-block" style="width: 50%; height: auto;">
+                </div> 
+
         </div>
         <a class="carousel-control-prev" href="#taskCarousel" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -24,7 +19,6 @@
     </div>
 
     <div id="taskStatus"></div>
-
 {% endblock %}
 
 <script>

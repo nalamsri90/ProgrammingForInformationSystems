@@ -70,5 +70,16 @@ def delete_task(task_id):
     db.session.commit()
     return redirect(url_for('get_tasks'))
 
+@app.route('/tasks', methods=['GET'])
+def get_tasks_api():
+    search_query = request.args.get('search', '')
+    if search_query:
+        tasks = Task.query.filter(Task.title.contains(search_query) | Task.description.contains(search_query)).all()
+    else:
+        tasks = Task.query.all()
+    task_list = [{'id': task.id, 'title': task.title, 'description': task.description, 'deadline': task.deadline, 'status': task.status} for task in tasks]
+    return redirect(url_for('get_tasks'))
+
+
 if __name__ == "__main__":
     app.run(debug=True)
